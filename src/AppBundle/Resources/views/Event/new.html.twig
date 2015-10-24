@@ -4,12 +4,27 @@
     <div class="container">
         <h1>Setup new event</h1>
         <p>Complete the form below in order to setup your event</p>
-        <div id="map_picker" style="width: 700px; height: 500px;">
-            <button class="btn btn-lg btn-info">
-                <span class="glyphicon glyphicon-refresh spinning"></span> Getting location..
-            </button>
+       <div class="row">
+
+            <div class="col-md-6">
+            <a class="btn btn-default" href="{{ path('event') }}">
+                Back to the list
+            </a>
+            {{ form(form) }}
+            </div>
+
+            <div class="col-md-6">
+            <div id="map_picker" style="width: 500px; height: 500px;">
+                <button class="btn btn-lg btn-info">
+                    <span class="glyphicon glyphicon-refresh spinning"></span> Getting location..
+                </button>
+            </div>
+            </div>
         </div>
-        {{ form(form) }}
+
+
+
+    </div>
     </div>
 {% endblock %}
 
