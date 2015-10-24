@@ -229,7 +229,7 @@ class Event implements JsonSerializable
      *
      * @return Event
      */
-    public function setLong($long)
+    public function setLon($long)
     {
         $this->long = $long;
 
@@ -241,7 +241,7 @@ class Event implements JsonSerializable
      *
      * @return string
      */
-    public function getLong()
+    public function getLon()
     {
         return $this->long;
     }
