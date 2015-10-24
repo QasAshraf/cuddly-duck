@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -34,6 +35,23 @@ class EventController extends Controller
         return array(
             'entities' => $entities,
         );
+    }
+
+    /**
+     * Lists all Event entities.
+     *
+     * @Route("/list", name="event_list")
+     * @Method("GET")
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:Event')->findAll();
+
+        $response = new JsonResponse();
+        $response->setData($entities);
+        return $response;
     }
     /**
      * Creates a new Event entity.

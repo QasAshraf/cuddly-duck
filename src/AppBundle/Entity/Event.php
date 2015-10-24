@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * Event
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\EventRepository")
  */
-class Event
+class Event implements JsonSerializable
 {
     /**
      * @var integer
@@ -48,6 +49,18 @@ class Event
      * @ORM\Column(name="Description", type="string", length=1000)
      */
     private $description;
+
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->id,
+            'name' => $this->name,
+            'location' => $this->location,
+            'description' => $this->description,
+            'date' => $this->date->format('Y-m-d h:i:s')
+
+        );
+    }
 
 
     /**
