@@ -4,24 +4,52 @@
     <div class="container">
         <h1>Setup new event</h1>
         <p>Complete the form below in order to setup your event</p>
-        <div id="map_picker" style="width: 700px; height: 500px;"></div>
+        <div id="map_picker" style="width: 700px; height: 500px;">
+            <button class="btn btn-lg btn-info">
+                <span class="glyphicon glyphicon-refresh spinning"></span> Getting location..
+            </button>
+        </div>
         {{ form(form) }}
     </div>
 {% endblock %}
 
 {% block javascripts %}
     <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jQuery-Geolocation/1.0.50/jquery.geolocation.min.js'></script>
     <script type="text/javascript" src='/js/locationpicker.jquery.min.js'></script>
     <script>
-        $('#map_picker').locationpicker({
-            location: {latitude: 51.5033630, longitude: -0.1276250},
-            radius: 0,
-            inputBinding: {
-                latitudeInput: $('#appbundle_event_lat'),
-                longitudeInput: $('#appbundle_event_lon'),
-                locationNameInput:  $('#appbundle_event_location')
-            },
-            enableAutocomplete: true
+
+
+        // Get current location and alert
+        $( document ).ready(function() {
+            $.geolocation.get({win: updatePosition, fail: noLocation});
+
+            function updatePosition(position) {
+                console.log("Location is " + position.coords.latitude + ", " + position.coords.longitude);
+
+                drawMap(position.coords.latitude, position.coords.longitude)
+            }
+
+            function noLocation(error) {
+                console.log("No location info available. Error code: " + error.code);
+
+                drawMap(51.5033630, -0.1276250)
+            }
+
+            function drawMap(latitude, longitude) {
+                $('#map_picker').locationpicker({
+                    location: {latitude: latitude, longitude: longitude},
+                    radius: 0,
+                    inputBinding: {
+                        latitudeInput: $('#appbundle_event_lat'),
+                        longitudeInput: $('#appbundle_event_lon'),
+                        locationNameInput: $('#appbundle_event_location')
+                    },
+                    enableAutocomplete: true
+                });
+            }
         });
+
+
     </script>
 {% endblock %}
