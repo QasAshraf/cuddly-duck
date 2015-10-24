@@ -17,3 +17,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    hm_twitterApiKey: "your-api-key"
+    hm_twitterApiSecret: "your-api-secret"
+    hm_twitterApiToken: "your-api-token"
+    hm_twitterApiTokenSecret: "your-api-token-secret"
