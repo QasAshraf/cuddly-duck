@@ -39,7 +39,7 @@ class Event implements JsonSerializable
     /**
      * @var string
      *
-     * @ORM\Column(name="Long", type="string", length=255)
+     * @ORM\Column(name="Lon", type="string", length=255)
      */
     private $long;
 
