@@ -72,6 +72,12 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        dql:
+            numeric_functions:
+                acos: DoctrineExtensions\Query\Mysql\Acos
+                sin: DoctrineExtensions\Query\Mysql\Sin
+                pi: DoctrineExtensions\Query\Mysql\Pi
+                cos: DoctrineExtensions\Query\Mysql\Cos
 
 # Swiftmailer Configuration
 swiftmailer:

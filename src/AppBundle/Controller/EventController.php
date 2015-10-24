@@ -53,6 +53,24 @@ class EventController extends Controller
         $response->setData($entities);
         return $response;
     }
+
+    /**
+     * Lists all Event entities 'near me'.
+     *
+     * @Route("/near/{lat}/{long}", name="event_near")
+     * @Method("GET")
+     */
+    public function nearAction($lat, $long)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:Event')->fineNear($lat,$long);
+
+        $response = new JsonResponse();
+        $response->setData($entities);
+        return $response;
+    }
+
     /**
      * Creates a new Event entity.
      *

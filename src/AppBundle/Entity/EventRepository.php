@@ -11,4 +11,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class EventRepository extends EntityRepository
 {
+    public function fineNear($lat, $lon)
+    {
+        $distance = 100;
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT e,(((acos(sin((".$lat."*pi()/180)) *
+            sin((e.lat*pi()/180))+cos((".$lat."*pi()/180)) *
+            cos((e.lat*pi()/180)) * cos(((".$lon."- e.long)*
+            pi()/180))))*180/pi())*60*1.1515
+        ) as distance
+        FROM AppBundle:Event e
+        HAVING distance >= ".$distance."
+        ORDER BY distance DESC")
+            ->getResult();
+    }
 }

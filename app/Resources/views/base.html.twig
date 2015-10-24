@@ -27,7 +27,16 @@
     <![endif]-->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
+
 <body>
+<header class="banner">
+    <div class="container">
+        <h1 class="heading-banner">
+            <a href="{{ path('homepage') }}">Volunteasy</a>
+        </h1>
+    </div>
+</header>
+
 {% block body %}{% endblock %}
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
