@@ -92,17 +92,16 @@ class EventController extends Controller
             $em->flush();
 
             $eventname = $entity->getName();
-            $eventDateTime = $entity->getDate();
+            $eventDateTime = $entity->getDate()->format('Y-m-d h:i:s');
             $eventDesc = $entity->getDescription();
 
-            $tweetText = "$eventname $eventDateTime $eventDesc";
+            $tweetText = "$eventname - $eventDateTime | $eventDesc";
 
             if (strlen($tweetText) > 140)
             {
-                mb_strimwidth($tweetText, 0, 137, "...");
+                $tweetText = mb_strimwidth($tweetText, 0, 137, "...");
             }
 
-            $tweetText = "Hello World";
             $result = $this->get('twitter')->postTweet($tweetText);
 
             return $this->redirect($this->generateUrl('event_show', array('id' => $entity->getId())));
