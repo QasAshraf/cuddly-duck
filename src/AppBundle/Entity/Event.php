@@ -57,17 +57,38 @@ class Event implements JsonSerializable
      */
     private $description;
 
+    /**
+     * @var float
+     *
+     */
+    private $distance;
+
     public function jsonSerialize()
     {
-        return array(
-            'id' => $this->id,
-            'name' => $this->name,
-            'lat' => $this->lat,
-            'long' => $this->long,
-            'description' => $this->description,
-            'date' => $this->date->format('Y-m-d h:i:s')
+        if (is_null($this->distance)) {
 
-        );
+            return array(
+                'id' => $this->id,
+                'name' => $this->name,
+                'lat' => $this->lat,
+                'long' => $this->long,
+                'description' => $this->description,
+                'date' => $this->date->format('Y-m-d h:i:s')
+
+            );
+
+        } else {
+            return array(
+                'id' => $this->id,
+                'name' => $this->name,
+                'lat' => $this->lat,
+                'long' => $this->long,
+                'description' => $this->description,
+                'date' => $this->date->format('Y-m-d h:i:s'),
+                'distance' => $this->distance
+
+            );
+        }
     }
 
 
@@ -81,6 +102,26 @@ class Event implements JsonSerializable
         return $this->id;
     }
 
+    /**
+     * @return float
+     */
+    public function getDistance()
+    {
+        if (isset($this->_values['distance']))
+        {
+            $this->distance = $this->_values['nb_tags'];
+        }
+        return $this->distance;
+    }
+
+    /**
+     * @param float $distance
+     * @return float
+     */
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
+    }
     /**
      * Set name
      *
