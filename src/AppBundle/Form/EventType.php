@@ -21,7 +21,9 @@ class EventType extends AbstractType
             ->add('location', 'text', array(
                 'mapped' => false
             ))
-            ->add('date', 'datetime')
+            ->add('date', 'datetime', array(
+                'data' => new \DateTime()
+            ))
             ->add('description')
         ;
     }
