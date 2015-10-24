@@ -1,2 +1,5 @@
-# cuddly-duck
-Hack Manchester 2015 - API/Web frontend
+volunteasy
+==========
+
+A Symfony project created on October 24, 2015, 12:04 pm.
+php app/console server:run
