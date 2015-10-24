@@ -6,6 +6,16 @@ html,body {
 
 header{
     background-color:#6D00DA;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6d00da+0,8900d3+100 */
+    background: #6d00da; /* Old browsers */
+    background: -moz-linear-gradient(top,  #6d00da 0%, #8900d3 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6d00da), color-stop(100%,#8900d3)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #6d00da 0%,#8900d3 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #6d00da 0%,#8900d3 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #6d00da 0%,#8900d3 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #6d00da 0%,#8900d3 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d00da', endColorstr='#8900d3',GradientType=0 ); /* IE6-9 */
+
 }
 
 .banner{
@@ -81,6 +91,17 @@ header{
   background-color:#6D00DA;
   color:#eee;
   overflow:hidden;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6d00da+0,801aa5+100 */
+    background: #6d00da; /* Old browsers */
+    background: -moz-linear-gradient(top,  #6d00da 0%, #801aa5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6d00da), color-stop(100%,#801aa5)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #6d00da 0%,#801aa5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #6d00da 0%,#801aa5 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #6d00da 0%,#801aa5 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #6d00da 0%,#801aa5 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d00da', endColorstr='#801aa5',GradientType=0 ); /* IE6-9 */
+
+
 }
 
 .container-full a {

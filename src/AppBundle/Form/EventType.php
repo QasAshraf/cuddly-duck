@@ -17,8 +17,12 @@ class EventType extends AbstractType
         $builder
             ->add('name')
             ->add('lat', 'hidden')
-            ->add('long', 'hidden')
-            ->add('date', 'datetime', array('label' => 'When'))
+            ->add('lon', 'hidden')
+            ->add('date', 'datetime', array(
+                'label' => 'Date and time',
+                'widget' => 'single_text',
+                'format' => 'DD-MM-YYYY HH:mm:ss'
+            ))
             ->add('description')
         ;
     }

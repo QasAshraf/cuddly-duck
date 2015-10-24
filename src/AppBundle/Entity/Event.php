@@ -70,8 +70,10 @@ class Event implements JsonSerializable
             return array(
                 'id' => $this->id,
                 'name' => $this->name,
-                'lat' => $this->lat,
-                'long' => $this->long,
+                'location' => array(
+                    'lat' => $this->lat,
+                    'lon' => $this->long,
+                ),
                 'description' => $this->description,
                 'date' => $this->date->format('Y-m-d h:i:s')
 
@@ -81,8 +83,10 @@ class Event implements JsonSerializable
             return array(
                 'id' => $this->id,
                 'name' => $this->name,
-                'lat' => $this->lat,
-                'long' => $this->long,
+                'location' => array(
+                    'lat' => $this->lat,
+                    'lon' => $this->long,
+                ),
                 'description' => $this->description,
                 'date' => $this->date->format('Y-m-d h:i:s'),
                 'distance' => $this->distance

@@ -4,6 +4,21 @@
     <div class="container">
         <h1>Setup new event</h1>
         <p>Complete the form below in order to setup your event</p>
+
         {{ form(form) }}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="application/javascript">
+    $(function () {
+        $('.datetimepicker').datetimepicker({
+            stepping: 5,
+            toolbarPlacement: 'top',
+            format: 'DD-MM-YYYY HH:mm:ss'
+        });
+    });
+    </script>
 {% endblock %}
