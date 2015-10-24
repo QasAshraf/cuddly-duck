@@ -80,6 +80,8 @@ class EventController extends Controller
      */
     public function createAction(Request $request)
     {
+        // test the twitter connection
+
         $entity = new Event();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -88,6 +90,20 @@ class EventController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+
+            $eventname = $entity->getName();
+            $eventDateTime = $entity->getDate();
+            $eventDesc = $entity->getDescription();
+
+            $tweetText = "$eventname $eventDateTime $eventDesc";
+
+            if (strlen($tweetText) > 140)
+            {
+                mb_strimwidth($tweetText, 0, 137, "...");
+            }
+
+            $tweetText = "Hello World";
+            $result = $this->get('twitter')->postTweet($tweetText);
 
             return $this->redirect($this->generateUrl('event_show', array('id' => $entity->getId())));
         }
