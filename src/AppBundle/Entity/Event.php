@@ -30,16 +30,16 @@ class Event implements JsonSerializable
     private $name;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="Lat", type="integer", length=255)
+     * @ORM\Column(name="Lat", type="float")
      */
     private $lat;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="Lon", type="integer", length=255)
+     * @ORM\Column(name="Lon", type="float")
      */
     private $long;
 
