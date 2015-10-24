@@ -41,7 +41,12 @@
 
 {% block datetime_widget -%}
     {% if widget == 'single_text' %}
-        {{- block('form_widget_simple') -}}
+        <div class='input-group date datetimepicker'>
+            <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+        </div>
     {% else -%}
         {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-inline')|trim}) -%}
         <div {{ block('widget_container_attributes') }}>
