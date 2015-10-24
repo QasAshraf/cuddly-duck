@@ -41,7 +41,7 @@ class Event implements JsonSerializable
      *
      * @ORM\Column(name="Lon", type="integer", length=255)
      */
-    private $long;
+    private $lon;
 
     /**
      * @var \DateTime
@@ -62,11 +62,12 @@ class Event implements JsonSerializable
         return array(
             'id' => $this->id,
             'name' => $this->name,
-            'lat' => $this->lat,
-            'long' => $this->long,
+            'location' => array(
+                'lat' => $this->lat,
+                'lon' => $this->lon,
+            ),
             'description' => $this->description,
             'date' => $this->date->format('Y-m-d h:i:s')
-
         );
     }
 
@@ -180,13 +181,13 @@ class Event implements JsonSerializable
     /**
      * Set long
      *
-     * @param string $long
+     * @param string $lon
      *
      * @return Event
      */
-    public function setLong($long)
+    public function setLon($lon)
     {
-        $this->long = $long;
+        $this->lon = $lon;
 
         return $this;
     }
@@ -196,8 +197,8 @@ class Event implements JsonSerializable
      *
      * @return string
      */
-    public function getLong()
+    public function getLon()
     {
-        return $this->long;
+        return $this->lon;
     }
 }
