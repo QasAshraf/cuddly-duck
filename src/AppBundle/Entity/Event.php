@@ -84,8 +84,8 @@ class Event implements JsonSerializable
                 'id' => $this->id,
                 'name' => $this->name,
                 'location' => array(
-                    'lat' => $this->lat,
-                    'lon' => $this->long,
+                    'latitude' => $this->lat,
+                    'longitude' => $this->long,
                 ),
                 'description' => $this->description,
                 'date' => $this->date->format('Y-m-d h:i:s'),
