@@ -18,7 +18,11 @@ class EventType extends AbstractType
             ->add('name')
             ->add('lat', 'hidden')
             ->add('long', 'hidden')
-            ->add('date', 'datetime', array('label' => 'When'))
+            ->add('date', 'datetime', array(
+                'label' => 'Date and time',
+                'widget' => 'single_text',
+                'format' => 'DD-MM-YYYY HH:mm:ss'
+            ))
             ->add('description')
         ;
     }
