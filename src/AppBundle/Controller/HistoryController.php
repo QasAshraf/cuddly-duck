@@ -40,7 +40,7 @@ class HistoryController extends Controller
     /**
      * Lists all History entities.
      *
-     * @Route("/report/{user}", name="history")
+     * @Route("/report/{user}", name="history_report")
      * @Method("GET")
      */
     public function reportAction($user)
