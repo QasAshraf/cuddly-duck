@@ -21,11 +21,7 @@ class EventType extends AbstractType
             ->add('location', 'text', array(
                 'mapped' => false
             ))
-            ->add('date', 'datetime', array(
-                'label' => 'Date and time',
-                'widget' => 'single_text',
-                'format' => 'DD-MM-YYYY HH:mm'
-            ))
+            ->add('date', 'datetime')
             ->add('description')
         ;
     }
