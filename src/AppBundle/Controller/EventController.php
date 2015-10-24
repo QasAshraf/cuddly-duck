@@ -156,8 +156,11 @@ class EventController extends Controller
      * @Route("/{id}", name="event_show")
      * @Method("GET")
      * @Template()
+     * @param $id
+     * @param Request $request
+     * @return array
      */
-    public function showAction($id)
+    public function showAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -169,6 +172,9 @@ class EventController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+        if ($request->getContentType() == "json") {
+            return new JsonResponse($entity);
+        }
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
