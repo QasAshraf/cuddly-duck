@@ -36,6 +36,23 @@ class HistoryController extends Controller
             'entities' => $entities,
         );
     }
+
+    /**
+     * Lists all History entities.
+     *
+     * @Route("/report/{user}", name="history")
+     * @Method("GET")
+     */
+    public function reportAction($user)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $eventRepo = $em->getRepository('AppBundle:Event');
+        $entities = $em->getRepository('AppBundle:History')->getReport($user,$eventRepo);
+
+        return new JsonResponse($entities);
+    }
+
     /**
      * Creates a new History entity.
      *
