@@ -32,9 +32,16 @@ class Event implements JsonSerializable
     /**
      * @var string
      *
-     * @ORM\Column(name="Location", type="string", length=255)
+     * @ORM\Column(name="Lat", type="string", length=255)
      */
-    private $location;
+    private $lat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Lon", type="string", length=255)
+     */
+    private $long;
 
     /**
      * @var \DateTime
@@ -55,7 +62,8 @@ class Event implements JsonSerializable
         return array(
             'id' => $this->id,
             'name' => $this->name,
-            'location' => $this->location,
+            'lat' => $this->lat,
+            'long' => $this->long,
             'description' => $this->description,
             'date' => $this->date->format('Y-m-d h:i:s')
 
@@ -95,30 +103,6 @@ class Event implements JsonSerializable
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set location
-     *
-     * @param string $location
-     *
-     * @return Event
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * Get location
-     *
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->location;
     }
 
     /**
@@ -168,5 +152,52 @@ class Event implements JsonSerializable
     {
         return $this->description;
     }
-}
 
+    /**
+     * Set lat
+     *
+     * @param string $lat
+     *
+     * @return Event
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return string
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set long
+     *
+     * @param string $long
+     *
+     * @return Event
+     */
+    public function setLong($long)
+    {
+        $this->long = $long;
+
+        return $this;
+    }
+
+    /**
+     * Get long
+     *
+     * @return string
+     */
+    public function getLong()
+    {
+        return $this->long;
+    }
+}

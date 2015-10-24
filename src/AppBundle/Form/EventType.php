@@ -16,7 +16,8 @@ class EventType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('location')
+            ->add('lat')
+            ->add('long')
             ->add('date')
             ->add('description')
         ;
