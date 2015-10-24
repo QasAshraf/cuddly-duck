@@ -65,34 +65,24 @@ class Event implements JsonSerializable
 
     public function jsonSerialize()
     {
+        $result = array(
+            'id' => $this->id,
+            'name' => $this->name,
+            'location' => array(
+                'latitude' => $this->lat,
+                'longitude' => $this->long,
+            ),
+            'description' => $this->description,
+            'date' => $this->date->format('Y-m-d h:i:s'),
+            'distance' => $this->distance
+
+        );
+
         if (is_null($this->distance)) {
-
-            return array(
-                'id' => $this->id,
-                'name' => $this->name,
-                'location' => array(
-                    'lat' => $this->lat,
-                    'lon' => $this->long,
-                ),
-                'description' => $this->description,
-                'date' => $this->date->format('Y-m-d h:i:s')
-
-            );
-
-        } else {
-            return array(
-                'id' => $this->id,
-                'name' => $this->name,
-                'location' => array(
-                    'latitude' => $this->lat,
-                    'longitude' => $this->long,
-                ),
-                'description' => $this->description,
-                'date' => $this->date->format('Y-m-d h:i:s'),
-                'distance' => $this->distance
-
-            );
+            unset($result['distance']);
         }
+
+        return $result;
     }
 
 
