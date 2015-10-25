@@ -69,6 +69,10 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AppBundle:Event')->findAll();
+        foreach($entities as $entity)
+        {
+            $entity->setLocation($this->getFormattedAddressFromCoordinates($entity->getLat(), $entity->getLong()));
+        }
 
         $response = new JsonResponse();
         $response->setData($entities);

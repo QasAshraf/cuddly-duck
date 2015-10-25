@@ -88,7 +88,7 @@ class Event implements JsonSerializable
             'name' => $this->name,
             'location' => array(
                 'latitude' => $this->lat,
-                'longitude' => $this->long,
+                'longitude' => $this->long
             ),
             'description' => $this->description,
             'date' => $this->date->format('Y-m-d h:i:s'),
@@ -100,6 +100,10 @@ class Event implements JsonSerializable
 
         if (is_null($this->distance)) {
             unset($result['distance']);
+        }
+
+        if (is_null($this->location)) {
+            unset($result['location']['address']);
         }
 
         return $result;
