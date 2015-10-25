@@ -147,7 +147,7 @@ class UserController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -155,6 +155,10 @@ class UserController extends Controller
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        if ($request->getContentType() == "json") {
+            return new JsonResponse($entity);
         }
 
         $deleteForm = $this->createDeleteForm($id);
