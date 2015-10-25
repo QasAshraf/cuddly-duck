@@ -102,8 +102,8 @@ class Event implements JsonSerializable
             unset($result['distance']);
         }
 
-        if (is_null($this->location)) {
-            unset($result['location']['address']);
+        if (!is_null($this->location)) {
+            $result['location']['address'] = $this->location;
         }
 
         return $result;
