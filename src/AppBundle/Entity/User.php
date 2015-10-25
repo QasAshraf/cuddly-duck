@@ -164,9 +164,9 @@ class User implements JsonSerializable
         );
 
         if (is_null($this->checkinCount)) {
-            $result['checkin_count'] = count($this->getCheckIns());
+            $result['checkins'] = count($this->getCheckIns());
         } else {
-            $result['checkin_count'] = $this->getCheckInCount();
+            $result['checkins'] = $this->getCheckInCount();
         }
 
 
