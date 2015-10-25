@@ -32,9 +32,30 @@ class EventController extends Controller
 
         $entities = $em->getRepository('AppBundle:Event')->findAll();
 
+        // Convert coordinates to address
+        foreach($entities as $entity)
+        {
+            $entity->setLocation($this->getFormattedAddressFromCoordinates($entity->getLat(), $entity->getLong()));
+        }
+
         return array(
             'entities' => $entities,
         );
+    }
+
+    private function getFormattedAddressFromCoordinates($latitude, $longitude)
+    {
+        // Build URL
+        $api_key = '5f6ad14b8cf1973d5093525e964644a9';
+        $endpoint = 'http://api.opencagedata.com/geocode/v1/json?q=';
+        $request = $endpoint . $latitude . '+' . $longitude . '&key=' . $api_key;
+
+        $buzz = $this->container->get('buzz');
+        $response = $buzz->get($request);
+
+        $data = (array) json_decode($response->getContent(), true);
+        return $data['results'][0]['formatted'];
+
     }
 
     /**
@@ -171,6 +192,9 @@ class EventController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
+
+        // Convert coordinates to address
+        $entity->setLocation($this->getFormattedAddressFromCoordinates($entity->getLat(), $entity->getLong()));
 
         if ($request->getContentType() == "json") {
             return new JsonResponse($entity);

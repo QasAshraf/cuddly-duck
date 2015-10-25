@@ -19,8 +19,7 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
+                <th>Location</th>
                 <th>Date</th>
                 <th>Description</th>
                 <th>Checkins</th>
@@ -32,13 +31,11 @@
                 <tr>
                     <td><a href="{{ path('event_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                     <td>{{ entity.name }}</td>
-                    <td>{{ entity.lat }}</td>
-                    <td>{{ entity.lon }}</td>
+                    <td>{{ entity.location }}</td>
                     <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{{ entity.description }}</td>
                     <td>{{ entity.checkins|length }}</td>
                     <td>
-
                         <a href="{{ path('event_show', { 'id': entity.id }) }}" class="btn btn-xs btn-default"type="button">View</a>
                         <a href="{{ path('event_edit', { 'id': entity.id }) }}" class="btn btn-xs btn-default"type="button">Edit</a>
 
