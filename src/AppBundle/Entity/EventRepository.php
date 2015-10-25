@@ -13,10 +13,10 @@ class EventRepository extends EntityRepository
 {
     public function fineNear($lat, $lon)
     {
-        $distance = 10;
+        $distance = 1;
         $results = $this->getEntityManager()
             ->createQuery(
-                "SELECT e,(((acos(sin((".$lat."*pi()/180)) *
+                "SELECT DISTINCT e,(((acos(sin((".$lat."*pi()/180)) *
             sin((e.lat*pi()/180))+cos((".$lat."*pi()/180)) *
             cos((e.lat*pi()/180)) * cos(((".$lon."- e.long)*
             pi()/180))))*180/pi())*60*1.1515
