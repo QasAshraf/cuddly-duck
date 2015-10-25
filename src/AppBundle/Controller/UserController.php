@@ -49,7 +49,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:User')->findBy(array('username' => $username));
+        $entities = $em->getRepository('AppBundle:User')->findBy(array('username' => urldecode($username)));
 
         if (empty($entities)) {
             return new JsonResponse(array("exists" => false));
