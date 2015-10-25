@@ -63,6 +63,24 @@ class Event implements JsonSerializable
      */
     private $distance;
 
+    private $location;
+
+    /**
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
     public function jsonSerialize()
     {
         $result = array(
