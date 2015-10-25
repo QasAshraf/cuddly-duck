@@ -11,12 +11,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class EventRepository extends EntityRepository
 {
-    public function fineNear($lat, $lon)
+    public function fineNear($lat, $lon, $isDistance = true)
     {
-        $distance = 1;
+        $distance = 10;
         $results = $this->getEntityManager()
             ->createQuery(
-                "SELECT DISTINCT e,(((acos(sin((".$lat."*pi()/180)) *
+                "SELECT e,(((acos(sin((".$lat."*pi()/180)) *
             sin((e.lat*pi()/180))+cos((".$lat."*pi()/180)) *
             cos((e.lat*pi()/180)) * cos(((".$lon."- e.long)*
             pi()/180))))*180/pi())*60*1.1515
@@ -25,19 +25,14 @@ class EventRepository extends EntityRepository
         HAVING distance <= ".$distance."
         ORDER BY distance DESC")
             ->getResult();
+
         $events = array();
         foreach($results as $result) {
             $event = $result[0];
-
-            foreach($events as $existingEvent) {
-                if ($existingEvent->getId() == $event->getId()) {
-                    break 2;
-                }
-            }
-            if (!in_array($event, $events)) {
+            if ($isDistance) {
                 $event->setDistance($result['distance']);
-                $events[] = $event;
             }
+            $events[] = $event;
         }
         return $events;
     }

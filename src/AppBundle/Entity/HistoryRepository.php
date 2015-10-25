@@ -24,7 +24,7 @@ class HistoryRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
         $events = array();
         foreach($results as $result) {
-            $events = array_merge($eventRepo->fineNear($result->getLat(), $result->getLon()), $events);
+            $events = array_merge($eventRepo->fineNear($result->getLat(), $result->getLon(), false), $events);
         }
         return $events;
     }
