@@ -23,6 +23,7 @@
                 <th>Longitude</th>
                 <th>Date</th>
                 <th>Description</th>
+                <th>Checkins</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -35,6 +36,7 @@
                     <td>{{ entity.lon }}</td>
                     <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{{ entity.description }}</td>
+                    <td>{{ entity.checkins|length }}</td>
                     <td>
 
                         <a href="{{ path('event_show', { 'id': entity.id }) }}" class="btn btn-xs btn-default"type="button">View</a>
