@@ -32,6 +32,7 @@ class EventController extends Controller
 
         $entities = $em->getRepository('AppBundle:Event')->findAll();
 
+        // Convert coordinates to address
         foreach($entities as $entity)
         {
             $entity->setLocation($this->getFormattedAddressFromCoordinates($entity->getLat(), $entity->getLong()));
@@ -191,6 +192,9 @@ class EventController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
+
+        // Convert coordinates to address
+        $entity->setLocation($this->getFormattedAddressFromCoordinates($entity->getLat(), $entity->getLong()));
 
         if ($request->getContentType() == "json") {
             return new JsonResponse($entity);
