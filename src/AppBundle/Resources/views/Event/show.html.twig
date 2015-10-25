@@ -43,13 +43,13 @@
                 <h2>Checkins</h2>
                 <table class="record_properties table">
                     <tbody>
+                    <tr>
+                        <th>Useername</th>
+                        <th>Date</th>
+                    </tr>
                     {% for checkin in entity.checkins %}
                     <tr>
-                        <th>Username</th>
                         <td>{{ checkin.user.username }}</td>
-                    </tr>
-                    <tr>
-                        <th>Date</th>
                         <td>{{ checkin.date|date('Y-m-d H:i:s') }}</td>
                     </tr>
                     {% endfor %}
