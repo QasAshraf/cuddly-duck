@@ -75,8 +75,10 @@ class Event implements JsonSerializable
             'description' => $this->description,
             'date' => $this->date->format('Y-m-d h:i:s'),
             'distance' => $this->distance
-
         );
+        foreach($this->getCheckIns() as $checkin) {
+            $result['checkins'][] = $checkin->jsonSerialize();
+        }
 
         if (is_null($this->distance)) {
             unset($result['distance']);
@@ -234,5 +236,74 @@ class Event implements JsonSerializable
     public function getLon()
     {
         return $this->long;
+    }
+
+    /** @ORM\OneToMany(targetEntity="AppBundle\Entity\CheckIn", mappedBy="event", fetch="EAGER") */
+    protected $checkIns;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->checkIns = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set long
+     *
+     * @param float $long
+     *
+     * @return Event
+     */
+    public function setLong($long)
+    {
+        $this->long = $long;
+
+        return $this;
+    }
+
+    /**
+     * Get long
+     *
+     * @return float
+     */
+    public function getLong()
+    {
+        return $this->long;
+    }
+
+    /**
+     * Add checkIn
+     *
+     * @param \AppBundle\Entity\CheckIn $checkIn
+     *
+     * @return Event
+     */
+    public function addCheckIn(\AppBundle\Entity\CheckIn $checkIn)
+    {
+        $this->checkIns[] = $checkIn;
+
+        return $this;
+    }
+
+    /**
+     * Remove checkIn
+     *
+     * @param \AppBundle\Entity\CheckIn $checkIn
+     */
+    public function removeCheckIn(\AppBundle\Entity\CheckIn $checkIn)
+    {
+        $this->checkIns->removeElement($checkIn);
+    }
+
+    /**
+     * Get checkIns
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCheckIns()
+    {
+        return $this->checkIns;
     }
 }

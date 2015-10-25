@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
  */
-class User
+class User implements JsonSerializable
 {
     /**
      * @var integer
@@ -93,5 +94,59 @@ class User
     {
         return $this->username;
     }
-}
 
+    /** @ORM\OneToMany(targetEntity="AppBundle\Entity\CheckIn", mappedBy="user", fetch="EAGER") */
+    protected $checkIns;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->checkIns = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add checkIn
+     *
+     * @param \AppBundle\Entity\CheckIn $checkIn
+     *
+     * @return User
+     */
+    public function addCheckIn(\AppBundle\Entity\CheckIn $checkIn)
+    {
+        $this->checkIns[] = $checkIn;
+
+        return $this;
+    }
+
+    /**
+     * Remove checkIn
+     *
+     * @param \AppBundle\Entity\CheckIn $checkIn
+     */
+    public function removeCheckIn(\AppBundle\Entity\CheckIn $checkIn)
+    {
+        $this->checkIns->removeElement($checkIn);
+    }
+
+    /**
+     * Get checkIns
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCheckIns()
+    {
+        return $this->checkIns;
+    }
+
+    public function jsonSerialize()
+    {
+        $result = array(
+            'user' => $this->getUser(),
+            'username' => $this->getUsername()
+        );
+
+        return $result;
+    }
+
+}
