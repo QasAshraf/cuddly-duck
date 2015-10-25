@@ -168,6 +168,25 @@ class UserController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+    /**
+     * Finds and displays a User entity.
+     *
+     * @Route("/username/{username}", name="user_show_by_username")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showByUsernameAction($username)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:User')->findBy(array('username' => urldecode($username)));
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        return new JsonResponse($entity);
+    }
 
     /**
      * Displays a form to edit an existing User entity.
