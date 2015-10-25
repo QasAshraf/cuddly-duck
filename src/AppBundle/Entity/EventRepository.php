@@ -28,8 +28,11 @@ class EventRepository extends EntityRepository
         $events = array();
         foreach($results as $result) {
             $event = $result[0];
-            $event->setDistance($result['distance']);
-            $events[] = $event;
+
+            if (!in_array($event, $events)) {
+                $event->setDistance($result['distance']);
+                $events[] = $event;
+            }
         }
         return $events;
     }
