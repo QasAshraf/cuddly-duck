@@ -35,6 +35,23 @@ class User implements JsonSerializable
      * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
+    private $checkinCount;
+
+    /**
+     * @return mixed
+     */
+    public function getCheckinCount()
+    {
+        return $this->checkinCount;
+    }
+
+    /**
+     * @param mixed $checkinCount
+     */
+    public function setCheckinCount($checkinCount)
+    {
+        $this->checkinCount = $checkinCount;
+    }
 
 
     /**
@@ -145,6 +162,13 @@ class User implements JsonSerializable
             'user' => $this->getUser(),
             'username' => $this->getUsername()
         );
+
+        if (is_null($this->checkinCount)) {
+            $result['checkin_count'] = count($this->getCheckIns());
+        } else {
+            $result['checkin_count'] = $this->getCheckInCount();
+        }
+
 
         return $result;
     }

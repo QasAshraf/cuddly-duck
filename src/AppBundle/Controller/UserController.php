@@ -40,6 +40,26 @@ class UserController extends Controller
     /**
      * Lists all User entities.
      *
+     * @Route("/leaderboard", name="user_leaderboard")
+     * @Method("GET")
+     * @Template()
+     */
+    public function leaderboardAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:User')->getLeaderBoard();
+
+        return new JsonResponse($entities);
+
+        return array(
+            'entities' => $entities,
+        );
+    }
+
+    /**
+     * Lists all User entities.
+     *
      * @Route("/exists/{username}", name="user_exists")
      * @Method("GET")
      * @param $username

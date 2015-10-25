@@ -10,4 +10,24 @@ namespace AppBundle\Entity;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLeaderBoard()
+    {
+
+        $results = $this->getEntityManager()->createQueryBuilder()
+        ->select(array('u', 'c', 'COUNT(c.id) as checkin_count'))
+        ->from('AppBundle:User', 'u')
+        ->innerJoin('u.checkIns', 'c')
+        ->groupBy('u.id')
+        ->orderBy('checkin_count', 'DESC')
+        ->setMaxResults(10)
+        ->getQuery()
+        ->getResult();
+        $users = array();
+        foreach($results as $result) {
+            $user = $result[0];
+            $user->setCheckinCount($result['checkin_count']);
+            $users[] = $user;
+        }
+        return $users;
+    }
 }
